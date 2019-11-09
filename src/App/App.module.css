@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+
+.logo {
+  height: 40vmin;
+}
+
+.header {
+  background-color: var(--first-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--size-base);
+  color: var(--white-full);
+}
+
+.title {
+  margin: calc(var(--space-large) * 2) 0;
+  font-size: var(--size-large);
+  font-weight: var(--weight-bold);
+}
+
+.paragraph {
+  margin: 0;
+}
+
+.code {
+  font-weight: var(--weight-medium);
+}
+
+.link {
+  color: var(--second);
+}

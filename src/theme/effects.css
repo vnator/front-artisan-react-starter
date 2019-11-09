@@ -1,0 +1,5 @@
+:root {
+  --border-base: 1px solid var(--first);
+  --border-dark: 1px solid var(--first-dark);
+  --border-light: 1px solid var(--third);
+}

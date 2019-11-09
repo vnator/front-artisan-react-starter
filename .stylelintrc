@@ -1,0 +1,27 @@
+{
+  "extends": ["stylelint-prettier/recommended"],
+  "plugins": [
+    "stylelint-prettier",
+    "stylelint-declaration-use-variable"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      true,
+      {
+        "singleQuote": true
+      }
+    ],
+    "sh-waqar/declaration-use-variable": [[
+      "/color/",
+      "transform",
+      "transition",
+      "z-index",
+      "font-size",
+      "font-family",
+      "background",
+      "transition",
+      "font-weight",
+      "line-height",
+    ]],
+  }
+}

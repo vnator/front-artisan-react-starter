@@ -1,0 +1,18 @@
+:root {
+  /* Colors */
+  --first: #303841;
+  --first-dark: #000306;
+  --first-ligth: #3a4750;
+
+  --second: #d72323;
+  --third: #f8fdff;
+
+  --black-full: #000;
+  --gray-base: #808891;
+  --gray-dark: #414950;
+  --gray-light: #b0b8c1;
+  --white-full: #fff;
+
+
+  --link: #105b8a;
+}

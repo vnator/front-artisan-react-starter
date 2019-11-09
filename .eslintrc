@@ -1,0 +1,29 @@
+{
+    "extends": ["prettier"],
+    "parser": "babel-eslint",
+    "plugins": [
+        "prettier",
+        "react",
+        "import",
+        "jsx-a11y"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "no-undef": "off",
+        "react/prop-types": 2,
+        "react/forbid-prop-types": 2,
+        "react/require-default-props": 2,
+        "prettier/prettier": ["error", {
+            "printWidth": 80,
+            "singleQuote": true,
+            "trailingComma": "all",
+            "bracketSpacing": true,
+            "jsxBracketSameLine": true
+            }
+        ]
+    }
+}

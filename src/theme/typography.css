@@ -1,0 +1,17 @@
+:root {
+  --font-base: 'Fira Code';
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --weight-light: 300;
+
+  --letter-large: 0.2em;
+
+  --size-base: 14px;
+  --size-small: 12px;
+  --size-large: 18px;
+  --size-icon: 32px;
+
+  --line-base: 1.4em;
+  --line-small: 1em;
+  --line-large: 2em;
+}
