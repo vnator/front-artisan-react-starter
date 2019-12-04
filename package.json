@@ -40,7 +40,7 @@
     "eslit": "^6.0.0",
     "prettier": "^1.19.1",
     "stylelint": "^11.1.1",
-    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-prettier": "^7.0.0",
     "stylelint-declaration-use-variable": "^1.7.2",
     "stylelint-prettier": "^1.1.1"
   }
