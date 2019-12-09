@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import style from './App.module.css';
 
-import logo from '../img/vnator.svg';
+import logo from '../../img/vnator.svg';
 
 const App = () => {
   const { formatMessage } = useIntl();

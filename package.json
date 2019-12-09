@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@formatjs/intl-relativetimeformat": "^4.4.0",
+    "@reduxjs/toolkit": "^1.1.0",
     "intl-pluralrules": "^1.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

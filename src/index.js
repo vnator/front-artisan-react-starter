@@ -10,7 +10,7 @@ import { messages } from './messages';
 
 import { flattenMessages } from './config/flattenMessages';
 import * as serviceWorker from './config/serviceWorker';
-import { App } from './App/App';
+import { App } from './modules/App/App.jsx';
 
 import './index.css';
 

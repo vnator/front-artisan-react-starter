@@ -1,7 +1,7 @@
-import { app_ptBR } from './App/intl.ptBR.js';
+import { app_ptBR } from './modules/App/intl.ptBR.js';
 
 // en-US
-import { app_enUS } from './App/intl.enUS.js';
+import { app_enUS } from './modules/App/intl.enUS.js';
 
 const messages = Object.freeze({
   'en-US': {
