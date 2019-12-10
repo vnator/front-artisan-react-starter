@@ -8,7 +8,7 @@ const setAddress = createAction(app.SET_ADDRESS);
 
 // DECLARE INITIAL STATE OF APP REDUCER
 const initialState = Object.freeze({
-  counter: 1,
+  counter: 543,
   address: {
     first: {
       city: 'Curitiba',
@@ -36,13 +36,19 @@ const initialState = Object.freeze({
 // DECLARE APP REDUCER
 const appReducer = createReducer(initialState, {
   [setCounter]: (state, action) => {
-    const { index, payload } = action;
-    return assocPath(index, payload, state);
+    const { index, value  } = action.payload;
+
+    console.log('==================================')
+    console.log(assocPath(index, value, state));
+    console.log(state)
+    console.log('==================================')
+
+    return assocPath(index, value, state);
   },
 
   [setAddress]: (state, action) => {
-    const { index, payload } = action;
-    return assocPath(index, payload, state);
+    const { index, value  } = action.payload;
+    return assocPath(index, value, state);
   },
 });
 

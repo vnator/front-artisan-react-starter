@@ -34,3 +34,42 @@
 .link {
   color: var(--second);
 }
+
+.counter {
+ --border: 1px solid var(--white-full);
+
+
+ display: flex;
+ align-items: center;
+ height: 32px;
+ border: var(--border);
+}
+
+.counterEvent {
+  border: 0;
+  background: none;
+  color: white;
+  width: 32px;
+  font-weight: bold;
+  font-size: 24px;
+  height: 100%;
+  box-sizing: border-box;
+  cursor: poiter;
+  transition: var(--transition);
+}
+
+.counterEvent:hover {
+  background: var(--white-full);
+  color: var(--black-full);
+}
+
+.counterLabel {
+  border: var(--border);
+  border-top: 0;
+  border-bottom: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: var(--space-base);
+  box-sizing: border-box;
+}
