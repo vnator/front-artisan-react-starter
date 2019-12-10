@@ -37,12 +37,6 @@ const initialState = Object.freeze({
 const appReducer = createReducer(initialState, {
   [setCounter]: (state, action) => {
     const { index, value  } = action.payload;
-
-    console.log('==================================')
-    console.log(assocPath(index, value, state));
-    console.log(state)
-    console.log('==================================')
-
     return assocPath(index, value, state);
   },
 

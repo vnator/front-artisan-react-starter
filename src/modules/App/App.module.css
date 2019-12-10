@@ -1,14 +1,15 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  background-color: var(--first-dark);
 }
 
 .logo {
-  height: 40vmin;
+  height: 20vmin;
 }
 
 .header {
-  background-color: var(--first-dark);
-  min-height: 100vh;
+  padding: var(--space-large) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,8 +38,7 @@
 
 .counter {
  --border: 1px solid var(--white-full);
-
-
+ margin-bottom: calc(var(--space-large)*2);
  display: flex;
  align-items: center;
  height: 32px;
@@ -54,8 +54,8 @@
   font-size: 24px;
   height: 100%;
   box-sizing: border-box;
-  cursor: poiter;
-  transition: var(--transition);
+  cursor: pointer;
+  transition: var(--transition-base);
 }
 
 .counterEvent:hover {
@@ -73,3 +73,56 @@
   padding: var(--space-base);
   box-sizing: border-box;
 }
+
+.addressList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.address {
+  height: 32px;
+  border: 1px solid var(--white-full);
+  border-bottom-width: 0;
+  display: flex;
+  justify-content: space-between;
+  min-width: 80vw;
+}
+
+.addressList .address:last-child {
+  border-bottom-width: 1px;
+}
+
+.key {
+  width: 8vw;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: var(--white-full);
+  color: var(--black-full);
+  cursor: pointer;
+  transition: var(--transition)
+}
+
+.key:hover {
+  opacity: 0.8;
+}
+
+.value {
+  color: var(--white-full);
+  flex-grow: 1;
+  text-align: left;
+  padding: var(--space-base);
+  box-sizing: border-box;
+  display: block;
+  align-items: center;
+  border: 0;
+  background: none;
+  border-radius: 0;
+}
+
+.input {
+  background: var(--grey-dark);
+} 
