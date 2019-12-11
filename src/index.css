@@ -1,9 +1,9 @@
 @import './theme/normalize.css';
 @import './theme/colors.css';
 @import './theme/measures.css';
-@import './theme/effects.css';
 @import './theme/typography.css';
 @import './theme/font-face.css';
+@import './theme/effects.css';
 
 html,
 body {

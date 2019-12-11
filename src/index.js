@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
+
 
 import { IntlProvider } from 'react-intl';
 import '@formatjs/intl-relativetimeformat/polyfill';
@@ -10,9 +12,10 @@ import { messages } from './messages';
 
 import { flattenMessages } from './config/flattenMessages';
 import * as serviceWorker from './config/serviceWorker';
-import { App } from './App/App';
+import { App } from './modules/App/App.jsx';
 
 import './index.css';
+import { store } from './config/store';
 
 const locale =
   navigator.language ||
@@ -21,9 +24,11 @@ const locale =
   'pt-BR';
 
 ReactDOM.render(
-  <IntlProvider locale={locale} messages={flattenMessages(messages[locale])}>
-    <App />
-  </IntlProvider>,
+  <Provider store={store}>
+    <IntlProvider locale={locale} messages={flattenMessages(messages[locale])}>
+      <App />
+    </IntlProvider>
+  </Provider>,
   document.getElementById('root'),
 );
 

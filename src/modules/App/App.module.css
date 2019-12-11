@@ -1,0 +1,156 @@
+.App {
+  --border: 1px solid var(--white-full);
+  --counter-size: 110px;
+
+  text-align: center;
+  min-height: 100vh;
+  background-color: var(--first-dark);
+}
+
+.logo {
+  height: 20vmin;
+}
+
+.header {
+  padding: var(--space-large) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--size-base);
+  color: var(--white-full);
+}
+
+.title {
+  margin: calc(var(--space-large) * 2) 0;
+  font-size: var(--size-large);
+  font-weight: var(--weight-bold);
+}
+
+.paragraph {
+  margin: 0;
+}
+
+.code {
+  font-weight: var(--weight-medium);
+}
+
+.link {
+  color: var(--second);
+}
+
+.autoCounter {
+  border: var(--border);
+  padding: var(--space-base);
+  border-bottom-width: 0;
+  box-sizing: border-box;
+  margin: 0;
+  width: var(--counter-size);
+  background: transparent;
+  color: var(--white-full);
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.autoCounter:hover {
+  background: var(--white-full);
+  color: var(--black-full);
+}
+
+.counter {
+ margin-bottom: calc(var(--space-large)*2);
+ display: flex;
+ align-items: center;
+ height: 32px;
+ border: var(--border);
+ box-sizing: border-box;
+ width: var(--counter-size);
+}
+
+.counterEvent {
+  border: 0;
+  background: none;
+  color: white;
+  width: 32px;
+  font-weight: bold;
+  font-size: 24px;
+  height: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.counterEvent:hover {
+  background: var(--white-full);
+  color: var(--black-full);
+}
+
+.counterLabel {
+  border: var(--border);
+  border-top: 0;
+  border-bottom: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: var(--space-base);
+  box-sizing: border-box;
+}
+
+.addressList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.address {
+  height: 32px;
+  border: var(--border);
+  border-bottom-width: 0;
+  display: flex;
+  justify-content: space-between;
+  min-width: 80vw;
+}
+
+.addressList .address:last-child {
+  border-bottom-width: 1px;
+}
+
+.key {
+  width: 8vw;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: var(--white-full);
+  color: var(--black-full);
+  cursor: pointer;
+  transition: var(--transition)
+}
+
+.key:hover {
+  opacity: 0.8;
+}
+
+.value {
+  color: var(--white-full);
+  flex-grow: 1;
+  text-align: left;
+  padding: var(--space-base);
+  box-sizing: border-box;
+  display: block;
+  align-items: center;
+  border: 0;
+  background: none;
+  border-radius: 0;
+}
+
+._index {
+  max-width: 80px;
+  background: var(--black-full);
+  text-align: center;
+}
+
+.input {
+  background: var(--grey-dark);
+} 
