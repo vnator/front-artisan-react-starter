@@ -7,7 +7,7 @@ const setCounterOneByOne = () => (dispatch, getState) => {
 
   for (let i = 1; i < 10; i++) {
     setTimeout(() => {
-      counter = getState().app.counter;
+      let counter = getState().app.counter;
       dispatch(setCounter(counter + 1));
     }, Number(`${i}000`));
   }
