@@ -1,11 +1,9 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { appReducer } from '../modules/App/redux/reducer';
+import { rootReducer } from './rootReducer';
 
 const store = configureStore({
-  reducer: Object.freeze({
-    app: appReducer,
-  }),
-  middleware: getDefaultMiddleware(),
+  reducer: rootReducer,
+  middleware: [...getDefaultMiddleware()],
   devTools: process.env.NODE_ENV !== 'production',
 });
 

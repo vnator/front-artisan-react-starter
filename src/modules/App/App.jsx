@@ -1,8 +1,9 @@
-import React, { useState  } from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useSelector, useStore,  useDispatch  } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { setCounter, setAddress  } from './redux/actions.js';
+import { setCounter, setAddress } from './redux/actions.js';
+import { setCounterOneByOne, setAddressCity } from './redux/thunk.js';
 import style from './App.module.css';
 
 import logo from '../../img/vnator.svg';
@@ -20,16 +21,20 @@ const App = () => {
   // internal App state
   const [selected, setSelected] = useState();
   const [newAddress, setNewAddress] = useState();
+  const [newCity, setNewCity] = useState();
 
-  const updateStreet = () => dispatch(
-    setAddress({
-      value: {
-        ...address[selected],
-        street: newAddress
-      },
-      index: selected
-    })
-  )
+  const updateStreet = () =>
+    dispatch(
+      setAddress({
+        value: {
+          ...address[selected],
+          street: newAddress,
+        },
+        index: selected,
+      }),
+    );
+
+  const updateCities = () => dispatch(setAddressCity(newCity));
 
   return (
     <div className={style.App}>
@@ -41,22 +46,25 @@ const App = () => {
           })}
         </h1>
 
+        <button
+          className={style.autoCounter}
+          onClick={() => dispatch(setCounterOneByOne())}>
+          one by one
+        </button>
         <div className={style.counter}>
           <button
             className={style.counterEvent}
-            onClick={() => dispatch(setCounter(counter - 1))}
-            >
-              -
+            onClick={() => dispatch(setCounter(counter - 1))}>
+            -
           </button>
-          <strong className={style.counterLabel} >{counter}</strong>
+          <strong className={style.counterLabel}>{counter}</strong>
           <button
             className={style.counterEvent}
-            onClick={() => dispatch(setCounter(counter + 1))}
-          >
+            onClick={() => dispatch(setCounter(counter + 1))}>
             +
           </button>
         </div>
-        
+
         <p className={style.paragraph}>
           {formatMessage(
             {
@@ -73,47 +81,60 @@ const App = () => {
                   {str}
                 </a>
               ),
-              code: str => <code key={str} className={style.code}>{str}</code>,
+              code: str => (
+                <code key={str} className={style.code}>
+                  {str}
+                </code>
+              ),
             },
           )}
         </p>
       </header>
       <div className={style.addressList}>
-        {Object.entries(address).map(([key, val]) => 
+        {Object.entries(address).map(([key, val]) => (
           <div className={style.address} key={key}>
             <button
               className={style.key}
               onClick={() => {
-                setSelected(key)
-                setNewAddress(val.street) 
+                setSelected(key);
+                setNewAddress(val.street);
               }}>
-                {key}
+              {key}
             </button>
             <span className={style.value}>
               {val.city}, {val.street} - {val.number}
             </span>
           </div>
-        )}
+        ))}
         <div className={`${style.address} ${style.input}`} key="input-row">
           <span className={style.key}>
             {selected ? Object.keys(address).find(x => x === selected) : 'row'}
-          </span>         
+          </span>
           <input
             class={style.value}
             value={newAddress}
             placeholder="update row street name"
             onChange={e => setNewAddress(e.target.value)}
           />
-          <button
-            className={style.key}
-            onClick={updateStreet}>
+          <button className={style.key} onClick={updateStreet}>
             submit
           </button>
         </div>
-      </div>  
+        <div className={`${style.address} ${style.input}`} key="input-row">
+          <span className={style.key}>city</span>
+          <input
+            class={style.value}
+            value={newCity}
+            placeholder="Set new city for all address"
+            onChange={e => setNewCity(e.target.value)}
+          />
+          <button className={style.key} onClick={updateCities}>
+            submit
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
 export { App };
-
