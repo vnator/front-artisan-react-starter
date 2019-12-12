@@ -1,0 +1,71 @@
+.Counter {
+  --border: 1px solid var(--white-full);
+  --counter-size: 110px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-grow: 1;
+  background-color: var(--first-dark);
+}
+
+.autoCounter {
+  border: var(--border);
+  padding: var(--space-base);
+  border-bottom-width: 0;
+  box-sizing: border-box;
+  margin: 0;
+  width: var(--counter-size);
+  background: transparent;
+  color: var(--white-full);
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.autoCounter:hover {
+  background: var(--white-full);
+  color: var(--black-full);
+}
+
+.counter {
+ margin-bottom: calc(var(--space-large)*2);
+ display: flex;
+ align-items: center;
+ height: 32px;
+ border: var(--border);
+ box-sizing: border-box;
+ width: var(--counter-size);
+}
+
+.counterEvent {
+  border: 0;
+  background: none;
+  color: white;
+  width: 32px;
+  font-weight: bold;
+  font-size: 24px;
+  height: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.counterEvent:hover {
+  background: var(--white-full);
+  color: var(--black-full);
+}
+
+.counterLabel {
+  color: var(--white-full);
+  border: var(--border);
+  border-top: 0;
+  border-bottom: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: var(--space-base);
+  box-sizing: border-box;
+}
+

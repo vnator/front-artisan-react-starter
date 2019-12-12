@@ -1,0 +1,69 @@
+.Address {
+  --border: 1px solid var(--white-full);
+
+  flex-grow: 1;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--first-dark);
+}
+
+.addressList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addressItem {
+  height: 32px;
+  border: var(--border);
+  border-bottom-width: 0;
+  display: flex;
+  justify-content: space-between;
+  min-width: 80vw;
+}
+
+.addressList .addressItem:last-child {
+  border-bottom-width: 1px;
+}
+
+.key {
+  width: 8vw;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: var(--white-full);
+  color: var(--black-full);
+  cursor: pointer;
+  transition: var(--transition)
+}
+
+.key:hover {
+  opacity: 0.8;
+}
+
+.value {
+  color: var(--white-full);
+  flex-grow: 1;
+  text-align: left;
+  padding: var(--space-base);
+  box-sizing: border-box;
+  display: block;
+  align-items: center;
+  border: 0;
+  background: none;
+  border-radius: 0;
+}
+
+._index {
+  max-width: 80px;
+  background: var(--black-full);
+  text-align: center;
+}
+
+.input {
+  background: var(--grey-dark);
+} 
