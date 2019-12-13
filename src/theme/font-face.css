@@ -3,8 +3,8 @@
   src: url('../fonts/bold/firacode-bold.woff2') format('woff2'),
        url('../fonts/bold/firacode-bold.woff') format('woff'),
        url('../fonts/bold/firacode-bold.otf') format('otf');
-  font-weight: var(--weight-bold);
-  font-style: var(--weight-bold);
+  font-weight: 700;
+  font-style: normal;
 }
 
 @font-face {
@@ -12,8 +12,8 @@
   src: url('../fonts/medium/firacode-medium.woff2') format('woff2'),
        url('../fonts/medium/firacode-medium.woff') format('woff'),
        url('../fonts/medium/firacode-medium.otf') format('otf');
-  font-weight: var(--weight-medium);
-  font-style: var(--weight-medium);
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
@@ -21,6 +21,6 @@
   src: url('../fonts/light/firacode-light.woff2') format('woff2'),
        url('../fonts/light/firacode-light.woff') format('woff'),
        url('../fonts/light/firacode-light.otf') format('otf');
-  font-weight: var(--weight-normal);
-  font-style: var(--weight-normal);
+  font-weight: normal;
+  font-style: normal;
 }
