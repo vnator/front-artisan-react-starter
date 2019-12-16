@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
-import { Provider as GraphQlProvider } from 'urql';
+import { ApolloProvider as GraphQlProvider } from '@apollo/react-hooks';
 
 import { IntlProvider } from 'react-intl';
 import '@formatjs/intl-relativetimeformat/polyfill';
@@ -26,7 +26,7 @@ const locale =
   'pt-BR';
 
 ReactDOM.render(
-  <GraphQlProvider value={client}>
+  <GraphQlProvider client={client}>
     <ReduxProvider store={store}>
       <IntlProvider
         locale={locale}

@@ -8,7 +8,7 @@
     "@reduxjs/toolkit": "^1.1.0",
     "@urql/devtools": "^0.1.2",
     "@urql/exchange-graphcache": "^2.0.0",
-    "apollo-boost": "^0.4.4",
+    "apollo-boost": "^0.4.7",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
     "intl-pluralrules": "^1.1.1",
