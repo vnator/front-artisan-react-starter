@@ -20,7 +20,6 @@ const Users = () => {
   const { formatMessage } = useIntl();
   const { data } = useQuery(query);
 
-  console.log(data);
   return (
     <div className={style.Users}>
       <h2 className={style.title}>
@@ -32,11 +31,15 @@ const Users = () => {
       <ul className={style.list}>
         <li className={style.head}>
           <button className={style.iconButton}>
-            name
+            {formatMessage({
+              id: 'users.list.name',
+            })}
             <IconFlatDown className={style.icon} />
           </button>
           <button className={style.iconButton}>
-            email
+            {formatMessage({
+              id: 'users.list.email',
+            })}
             <IconFlatUp className={style.icon} />
           </button>
         </li>
