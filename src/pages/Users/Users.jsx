@@ -1,15 +1,14 @@
 import React from 'react';
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 import { useIntl } from 'react-intl';
 import { useQuery } from 'urql';
 import style from './Users.module.css';
 
 const query = gql`
-  query {
-    users {
-      id
-      email
+  {
+    user(id: 1) {
       name
+      email
     }
   }
 `;

@@ -1534,6 +1534,13 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
+"@urql/devtools@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@urql/devtools/-/devtools-0.1.2.tgz#0fb30ec45d7486f18435ec511b1aaa6ccfa7cb0c"
+  integrity sha512-JoQlxFmWPxpuvi8nstjLNRhp1sScNZNo3WiMw8f5PLFFApeUvf3Wa4nDK/zIxNZKd6eOzAyeSLy0RQ6+iVvYGQ==
+  dependencies:
+    wonka "^3.2.1"
+
 "@urql/exchange-graphcache@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@urql/exchange-graphcache/-/exchange-graphcache-2.0.0.tgz#9a52646cbb18ae5d4166f196c398e5be050e0930"

@@ -1,13 +1,17 @@
-import { Client, dedupExchange, fetchExchange } from 'urql';
+import { createClient, dedupExchange, fetchExchange } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache';
 
 const cache = cacheExchange({});
 
-const client = new Client({
-  url: 'https://localhost:4000/',
+const client = new createClient({
+  url: 'http://localhost:4000/',
+  exchanges: [dedupExchange, cache, fetchExchange],
   fetchOptions: {
-    credentials: 'same-origin',
     mode: 'no-cors',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
   },
 });
 
