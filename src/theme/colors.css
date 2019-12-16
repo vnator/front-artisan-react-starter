@@ -12,6 +12,8 @@
   --grey-dark: #111920;
   --grey-light: #b0b8c1;
   --white-full: #fff;
+  --white-half: rgba(255, 255, 255, 0.52);
+  --white-glass: rgba(255, 255, 255, 0.07);
 
   --link: #105b8a;
 }
