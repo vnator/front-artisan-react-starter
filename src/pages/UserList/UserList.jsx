@@ -14,6 +14,7 @@ import {
 
 import style from './UserList.module.css';
 import { MAIN_ROUTES } from '../../const/routes';
+import { Btn } from '../../components/Btn/Btn';
 
 const query = gql`
   {
@@ -31,9 +32,9 @@ const UserList = () => {
   const { formatMessage } = useIntl();
   const { data } = useQuery(query);
 
-  const onClickUser = id => {
+  function onClickUser(id = 0) {
     history.push(MAIN_ROUTES.USER(id));
-  };
+  }
 
   return (
     <div className={style.UserList}>
@@ -81,6 +82,12 @@ const UserList = () => {
           </button>
         </li>
       </ul>
+
+      <Btn onClick={() => onClickUser()}>
+        {formatMessage({
+          id: 'users.newUser',
+        })}
+      </Btn>
     </div>
   );
 };

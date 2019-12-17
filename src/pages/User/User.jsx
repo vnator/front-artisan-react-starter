@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
-import style from './Users.module.css';
+
 import { ROUTER_PARAMS } from '../../const/routes';
-import { parseRouterId } from '../../utils/parseRouterParams';
+import { TextField } from '../../components/TextField/TextField';
+
+import style from './User.module.css';
+import { Btn } from '../../components/Btn/Btn';
 
 const query = gql`
   query User($id: ID) {
@@ -14,30 +17,79 @@ const query = gql`
       name
       email
       dateOfBirth
+      gender
     }
   }
 `;
 
 const User = () => {
   const params = useParams();
-  const userId = parseRouterId(params[ROUTER_PARAMS.USER_ID]);
-
   const { formatMessage } = useIntl();
-  const { data } = useQuery(query, {
+
+  const { data, loading, error } = useQuery(query, {
     variables: {
-      id: userId,
+      id: params[ROUTER_PARAMS.USER_ID],
     },
   });
 
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    dateOfBirth: '',
+    gender: '',
+  });
+
+  useEffect(() => {
+    if (data && data.user) {
+      const { name, email, dateOfBirth, gender } = data.user;
+
+      setForm({
+        name,
+        email,
+        dateOfBirth,
+        gender,
+      });
+    }
+  }, [data, loading, error]);
+
+  const defineType = name => {
+    if (name === 'dateOfBirth') {
+      return 'date';
+    } else if (name === 'email') {
+      return 'email';
+    }
+  };
+
   return (
-    <div className={style.Users}>
+    <div className={style.User}>
       <h2 className={style.title}>
         {formatMessage({
           id: 'user.title',
         })}
       </h2>
 
-      <div>{!data ? 'carregando...' : data.user.name}</div>
+      <form className={style.form}>
+        {Object.entries(form).map(([key, val]) => (
+          <TextField
+            placeholder={formatMessage({
+              id: `user.form.${key}.placeholder`,
+            })}
+            label={formatMessage({ id: `user.form.${key}.label` })}
+            name={key}
+            key={key}
+            value={val}
+            type={defineType(key)}
+            disabled={key === 'gender'}
+            onChange={e => setForm({ ...form, [key]: e.target.value })}
+          />
+        ))}
+
+        <Btn onClick={() => console.log('foi')}>
+          {formatMessage({
+            id: 'user.submit',
+          })}
+        </Btn>
+      </form>
     </div>
   );
 };

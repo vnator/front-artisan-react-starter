@@ -1,10 +1,13 @@
 .UserList {
   --border: 1px solid var(--white-glass);
   --cell: 260px;
+  --size: calc((var(--cell) * 2) + var(--space-large));
 
   color: var(--white-full);
   min-height: 100vh;
   height: auto;
+  max-width: var(--size);
+  margin: 0 auto;
 }
 
 .list {
@@ -13,7 +16,8 @@
   text-align: left;
   width: auto;
   margin: 0 auto;
-  max-width: 520px;
+  width: var(--size);
+  padding: 0;
 }
 
 .item,
@@ -64,7 +68,7 @@
   border-bottom: 0;
 }
 
-.list .item:last-child {
+.list > .item:nth-last-child(2) {
   border-bottom: var(--border);
 }
 

@@ -1,0 +1,34 @@
+.TextField {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: auto;
+  margin: var(--space-large) 0;
+}
+
+.label {
+  font-size: var(--size-base);
+  font-weight: var(--weight-bold);
+  color: var(--white-half);
+  margin-bottom: var(--space-small);
+}
+
+.input {
+  font-size: var(--size-base);
+  border: 1px solid var(--white-smoke);
+  height: 28px;
+  box-sizing: border-box;
+  padding: var(--space-base);
+  background: transparent;
+  color: var(--white-smoke);
+  transition: var(--transition-base);
+}
+
+.input:focus {
+  border-color: var(--white-full);
+  color: var(--white-full);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}

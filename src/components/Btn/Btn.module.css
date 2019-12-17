@@ -1,0 +1,19 @@
+.Btn {
+  margin: var(--space-large) 0;
+  font-size: var(--size-base);
+  border: 1px solid var(--white-smoke);
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: var(--white-glass);
+  color: var(--black-smoke);
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+.Btn:hover {
+  background: var(--white-full);
+  color: var(--black-full);
+}
