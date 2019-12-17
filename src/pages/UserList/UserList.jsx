@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 
 import { useHistory } from 'react-router-dom';
@@ -15,10 +15,11 @@ import {
 import style from './UserList.module.css';
 import { MAIN_ROUTES } from '../../const/routes';
 import { Btn } from '../../components/Btn/Btn';
+import { SORT_FIELD } from '../../const/userListParams';
 
 const query = gql`
-  {
-    users {
+  query Users($sortField: SortFieldUser, $skip: Int, $limit: Int) {
+    users(sortField: $sortField, skip: $skip, limit: $limit) {
       id
       name
       email
@@ -29,11 +30,40 @@ const query = gql`
 
 const UserList = () => {
   const history = useHistory();
+  const [page, setPage] = useState(0);
+  const [params, setParams] = useState({
+    skip: 0,
+    sortField: SORT_FIELD.NAME,
+    limit: 4,
+  });
+
   const { formatMessage } = useIntl();
-  const { data } = useQuery(query);
+
+  const { data, refetch } = useQuery(query, {
+    variables: params,
+  });
 
   function onClickUser(id = 0) {
     history.push(MAIN_ROUTES.USER(id));
+  }
+
+  function setNewPage(value) {
+    if (value >= 0) {
+      setPage(value);
+      setParams({
+        ...params,
+        skip: value * params.limit,
+      });
+      refetch();
+    }
+  }
+
+  function orderBy(value) {
+    setParams({
+      ...params,
+      sortField: value,
+    });
+    refetch();
   }
 
   return (
@@ -46,17 +76,29 @@ const UserList = () => {
 
       <ul className={style.list}>
         <li className={style.head}>
-          <button className={style.iconButton}>
+          <button
+            className={style.iconButton}
+            onClick={() => orderBy(SORT_FIELD.NAME)}>
             {formatMessage({
               id: 'users.list.name',
             })}
-            <IconFlatDown className={style.icon} />
+            {params.sortField === SORT_FIELD.NAME ? (
+              <IconFlatDown className={style.icon} />
+            ) : (
+              <IconFlatUp className={style.icon} />
+            )}
           </button>
-          <button className={style.iconButton}>
+          <button
+            className={style.iconButton}
+            onClick={() => orderBy(SORT_FIELD.EMAIL)}>
             {formatMessage({
               id: 'users.list.email',
             })}
-            <IconFlatUp className={style.icon} />
+            {params.sortField === SORT_FIELD.EMAIL ? (
+              <IconFlatDown className={style.icon} />
+            ) : (
+              <IconFlatUp className={style.icon} />
+            )}
           </button>
         </li>
 
@@ -73,11 +115,15 @@ const UserList = () => {
           ))}
 
         <li className={style.foot}>
-          <button className={style.iconButton}>
+          <button
+            onClick={() => setNewPage(page - 1)}
+            className={style.iconButton}>
             <IconFlatLeft className={style.icon} />
           </button>
-          <strong className={style.page}>1</strong>
-          <button className={style.iconButton}>
+          <strong className={style.page}>{page + 1}</strong>
+          <button
+            onClick={() => setNewPage(page + 1)}
+            className={style.iconButton}>
             <IconFlatRight className={style.icon} />
           </button>
         </li>
