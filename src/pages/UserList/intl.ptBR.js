@@ -1,4 +1,4 @@
-const users_ptBR = {
+const userList_ptBR = {
   title: 'GraphQL Users Request',
   list: {
     name: 'name',
@@ -6,4 +6,4 @@ const users_ptBR = {
   },
 };
 
-export { users_ptBR };
+export { userList_ptBR };

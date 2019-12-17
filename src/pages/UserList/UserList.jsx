@@ -12,7 +12,7 @@ import {
   IconFlatRight,
 } from '../../components/Icon';
 
-import style from './Users.module.css';
+import style from './UserList.module.css';
 import { MAIN_ROUTES } from '../../const/routes';
 
 const query = gql`
@@ -26,7 +26,7 @@ const query = gql`
   }
 `;
 
-const Users = () => {
+const UserList = () => {
   const history = useHistory();
   const { formatMessage } = useIntl();
   const { data } = useQuery(query);
@@ -36,7 +36,7 @@ const Users = () => {
   };
 
   return (
-    <div className={style.Users}>
+    <div className={style.UserList}>
       <h2 className={style.title}>
         {formatMessage({
           id: 'users.title',
@@ -85,4 +85,4 @@ const Users = () => {
   );
 };
 
-export { Users };
+export { UserList };

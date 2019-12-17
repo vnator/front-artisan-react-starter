@@ -8,7 +8,7 @@ import { Counter } from '../../components/Counter/Counter';
 import { Address } from '../../pages/Address/Address';
 import { Header } from '../Header/Header';
 import { MAIN_ROUTES } from '../../const/routes';
-import { Users } from '../../pages/Users/Users';
+import { UserList } from '../../pages/UserList/UserList';
 import { User } from '../../pages/User/User';
 
 const App = () => {
@@ -58,7 +58,7 @@ const App = () => {
             </Link>
           </li>
           <li className={style.opt}>
-            <Link to={MAIN_ROUTES.USERS}>
+            <Link to={MAIN_ROUTES.USER_LIST}>
               {formatMessage({
                 id: 'app.menu.users',
               })}
@@ -72,8 +72,8 @@ const App = () => {
           <Route path={MAIN_ROUTES.ADDRESS}>
             <Address />
           </Route>
-          <Route path={MAIN_ROUTES.USERS}>
-            <Users />
+          <Route path={MAIN_ROUTES.USER_LIST}>
+            <UserList />
           </Route>
           <Route path={MAIN_ROUTES.USER()}>
             <User />

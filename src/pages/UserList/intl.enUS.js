@@ -1,4 +1,4 @@
-const users_enUS = {
+const userList_enUS = {
   title: 'GraphQL Users Request',
   list: {
     name: 'name',
@@ -6,4 +6,4 @@ const users_enUS = {
   },
 };
 
-export { users_enUS };
+export { userList_enUS };
