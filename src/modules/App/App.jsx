@@ -9,6 +9,7 @@ import { Address } from '../../pages/Address/Address';
 import { Header } from '../Header/Header';
 import { MAIN_ROUTES } from '../../const/routes';
 import { Users } from '../../pages/Users/Users';
+import { User } from '../../pages/User/User';
 
 const App = () => {
   const { formatMessage } = useIntl();
@@ -73,6 +74,9 @@ const App = () => {
           </Route>
           <Route path={MAIN_ROUTES.USERS}>
             <Users />
+          </Route>
+          <Route path={MAIN_ROUTES.USER()}>
+            <User />
           </Route>
         </Switch>
       </Router>

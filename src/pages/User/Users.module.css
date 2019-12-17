@@ -1,6 +1,5 @@
 .Users {
   --border: 1px solid var(--white-glass);
-  --cell: 260px;
 
   color: var(--white-full);
   min-height: 100vh;
@@ -18,17 +17,13 @@
 
 .item,
 .head,
-.user {
+.link {
   display: flex;
   box-sizing: border-box;
 }
 
 .head {
   padding: var(--space-base);
-}
-
-.head .iconButton {
-  min-width: var(--cell);
 }
 
 .head .icon {
@@ -68,24 +63,21 @@
   border-bottom: var(--border);
 }
 
-.user {
+.link {
   cursor: pointer;
   width: 100%;
   color: var(--white-half);
-  background: none;
-  border: 0;
-  text-align: left;
   padding: var(--space-base);
   transition: var(--transition-base0);
 }
 
-.user:hover {
+.link:hover {
   background: var(--grey-dark);
 }
 
 .cell,
 .order {
-  width: var(--cell);
+  width: 260px;
 }
 
 .foot {

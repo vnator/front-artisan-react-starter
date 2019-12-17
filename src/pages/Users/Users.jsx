@@ -1,9 +1,19 @@
 import React from 'react';
 import { gql } from 'apollo-boost';
+
+import { useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { useIntl } from 'react-intl';
+
+import {
+  IconFlatDown,
+  IconFlatUp,
+  IconFlatLeft,
+  IconFlatRight,
+} from '../../components/Icon';
+
 import style from './Users.module.css';
-import { IconFlatDown, IconFlatUp, IconFlatLeft, IconFlatRight } from '../../components/Icon';
+import { MAIN_ROUTES } from '../../const/routes';
 
 const query = gql`
   {
@@ -17,8 +27,13 @@ const query = gql`
 `;
 
 const Users = () => {
+  const history = useHistory();
   const { formatMessage } = useIntl();
   const { data } = useQuery(query);
+
+  const onClickUser = id => {
+    history.push(MAIN_ROUTES.USER(id));
+  };
 
   return (
     <div className={style.Users}>
@@ -47,12 +62,15 @@ const Users = () => {
         {data &&
           data.users.map(user => (
             <li key={user.id} className={style.item}>
-              <a className={style.link}>
+              <button
+                className={style.user}
+                onClick={() => onClickUser(user.id)}>
                 <strong className={style.cell}>{user.name}</strong>
                 <span className={style.cell}>{user.email}</span>
-              </a>
+              </button>
             </li>
           ))}
+
         <li className={style.foot}>
           <button className={style.iconButton}>
             <IconFlatLeft className={style.icon} />
