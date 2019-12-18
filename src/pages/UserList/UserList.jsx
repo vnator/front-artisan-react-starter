@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 import { useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
@@ -39,7 +39,7 @@ const UserList = () => {
 
   const { formatMessage } = useIntl();
 
-  const { data, refetch } = useQuery(query, {
+  const { data } = useQuery(query, {
     variables: params,
   });
 
@@ -54,7 +54,6 @@ const UserList = () => {
         ...params,
         skip: value * params.limit,
       });
-      refetch();
     }
   }
 
@@ -63,7 +62,6 @@ const UserList = () => {
       ...params,
       sortField: value,
     });
-    refetch();
   }
 
   return (

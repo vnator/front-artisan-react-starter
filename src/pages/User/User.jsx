@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 
@@ -22,13 +22,44 @@ const query = gql`
   }
 `;
 
+const mutation = gql`
+  mutation UpsertUser(
+    $name: String
+    $email: Email
+    $dateOfBirth: Date
+    $gender: Gender
+  ) {
+    upsertUser(
+      name: $name
+      email: $email
+      dateOfBirth: $dateOfBirth
+      gender: $gender
+    ) {
+      name
+      email
+      gender
+      dateOfBirth
+    }
+  }
+`;
+
 const User = () => {
   const params = useParams();
   const { formatMessage } = useIntl();
 
-  const { data, loading, error } = useQuery(query, {
+  const client = useApolloClient();
+
+  const { data, loading, error, refetch } = useQuery(query, {
     variables: {
       id: params[ROUTER_PARAMS.USER_ID],
+    },
+  });
+
+  const [upsertUser] = useMutation(mutation, {
+    onCompleted({ upsertUser }) {
+      console.log(upsertUser);
+      client.writeData({ data: { User: { ...upsertUser } } });
+      refetch();
     },
   });
 
@@ -60,6 +91,13 @@ const User = () => {
     }
   };
 
+  const submit = () =>
+    upsertUser({
+      variables: {
+        ...form,
+      },
+    });
+
   return (
     <div className={style.User}>
       <h2 className={style.title}>
@@ -84,7 +122,7 @@ const User = () => {
           />
         ))}
 
-        <Btn onClick={() => console.log('foi')}>
+        <Btn onClick={submit}>
           {formatMessage({
             id: 'user.submit',
           })}
