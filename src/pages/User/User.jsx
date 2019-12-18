@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
@@ -10,8 +11,12 @@ import { TextField } from '../../components/TextField/TextField';
 import style from './User.module.css';
 import { Btn } from '../../components/Btn/Btn';
 import { USER } from '../../queries/user';
+import { triggerToast } from '../../components/Toast/redux/thunk';
+import { checkEmail } from '../../utils/validate';
+import { ERROR } from '../../const/errors';
 
 const User = () => {
+  const dispatch = useDispatch();
   const params = useParams();
   const history = useHistory();
   const { formatMessage } = useIntl();
@@ -63,12 +68,21 @@ const User = () => {
     }
   };
 
-  const submit = () =>
-    upsertUser({
-      variables: {
-        ...form,
-      },
-    });
+  const submit = () => {
+    if (checkEmail(form.email)) {
+      upsertUser({
+        variables: {
+          ...form,
+        },
+      });
+    } else {
+      dispatch(triggerToast(
+          formatMessage({
+            id: `app.error.${ERROR.TYPE.INPUT}.${ERROR.CODE.A01}`,
+          }),
+      ));
+    }
+  };
 
   return (
     <div className={style.User}>
@@ -81,16 +95,16 @@ const User = () => {
       <form className={style.form}>
         {Object.entries(form).map(([key, val]) => (
           <TextField
+            key={key}
+            name={key}
+            value={val}
+            label={formatMessage({ id: `user.form.${key}.label` })}
+            onChange={e => setForm({ ...form, [key]: e.target.value })}
             placeholder={formatMessage({
               id: `user.form.${key}.placeholder`,
             })}
-            label={formatMessage({ id: `user.form.${key}.label` })}
-            name={key}
-            key={key}
-            value={val}
             type={defineType(key)}
             disabled={key === 'gender'}
-            onChange={e => setForm({ ...form, [key]: e.target.value })}
           />
         ))}
 

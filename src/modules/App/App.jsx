@@ -10,6 +10,7 @@ import { Header } from '../Header/Header';
 import { MAIN_ROUTES } from '../../const/routes';
 import { UserList } from '../../pages/UserList/UserList';
 import { User } from '../../pages/User/User';
+import { Toast } from '../../components/Toast/Toast';
 
 const App = () => {
   const { formatMessage } = useIntl();
@@ -80,6 +81,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
+      <Toast />
     </div>
   );
 };

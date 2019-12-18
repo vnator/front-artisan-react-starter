@@ -1,0 +1,20 @@
+.Toast {
+  height: 46px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: var(--size-base);
+  color: var(--white-full);
+  background: var(--error);
+  transition: var(--transition-base);
+  transform: translateY(200%);
+}
+
+._active {
+  transform: translateY(0);
+}
