@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import gql from 'graphql-tag';
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
@@ -10,36 +9,7 @@ import { TextField } from '../../components/TextField/TextField';
 
 import style from './User.module.css';
 import { Btn } from '../../components/Btn/Btn';
-
-const query = gql`
-  query User($id: ID) {
-    user(id: $id) {
-      id
-      name
-      email
-      dateOfBirth
-      gender
-    }
-  }
-`;
-
-const mutation = gql`
-  mutation UpsertUser(
-    $name: String
-    $email: Email
-    $dateOfBirth: Date
-    $gender: Gender
-  ) {
-    upsertUser(
-      name: $name
-      email: $email
-      dateOfBirth: $dateOfBirth
-      gender: $gender
-    ) {
-      id
-    }
-  }
-`;
+import { USER } from '../../queries/user';
 
 const User = () => {
   const params = useParams();
@@ -48,13 +18,13 @@ const User = () => {
 
   const client = useApolloClient();
 
-  const { data, loading, error, refetch } = useQuery(query, {
+  const { data, loading, error, refetch } = useQuery(USER.GET_USER, {
     variables: {
       id: params[ROUTER_PARAMS.USER_ID],
     },
   });
 
-  const [upsertUser] = useMutation(mutation, {
+  const [upsertUser] = useMutation(USER.UPSERT_USER, {
     onCompleted({ upsertUser }) {
       if (upsertUser.id !== params[ROUTER_PARAMS.USER_ID]) {
         history.push(MAIN_ROUTES.USER(upsertUser.id));

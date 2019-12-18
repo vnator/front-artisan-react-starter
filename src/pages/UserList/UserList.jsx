@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 
 import { useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
@@ -16,17 +15,7 @@ import style from './UserList.module.css';
 import { MAIN_ROUTES } from '../../const/routes';
 import { Btn } from '../../components/Btn/Btn';
 import { SORT_FIELD } from '../../const/userListParams';
-
-const query = gql`
-  query Users($sortField: SortFieldUser, $skip: Int, $limit: Int) {
-    users(sortField: $sortField, skip: $skip, limit: $limit) {
-      id
-      name
-      email
-      dateOfBirth
-    }
-  }
-`;
+import { USER } from '../../queries/user';
 
 const UserList = () => {
   const history = useHistory();
@@ -39,7 +28,7 @@ const UserList = () => {
 
   const { formatMessage } = useIntl();
 
-  const { data } = useQuery(query, {
+  const { data } = useQuery(USER.GET_USER_LIST, {
     variables: params,
   });
 
