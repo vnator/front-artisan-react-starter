@@ -3,8 +3,9 @@ import gql from 'graphql-tag';
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import { ROUTER_PARAMS } from '../../const/routes';
+import { ROUTER_PARAMS, MAIN_ROUTES } from '../../const/routes';
 import { TextField } from '../../components/TextField/TextField';
 
 import style from './User.module.css';
@@ -35,16 +36,14 @@ const mutation = gql`
       dateOfBirth: $dateOfBirth
       gender: $gender
     ) {
-      name
-      email
-      gender
-      dateOfBirth
+      id
     }
   }
 `;
 
 const User = () => {
   const params = useParams();
+  const history = useHistory();
   const { formatMessage } = useIntl();
 
   const client = useApolloClient();
@@ -57,9 +56,12 @@ const User = () => {
 
   const [upsertUser] = useMutation(mutation, {
     onCompleted({ upsertUser }) {
-      console.log(upsertUser);
-      client.writeData({ data: { User: { ...upsertUser } } });
-      refetch();
+      if (upsertUser.id !== params[ROUTER_PARAMS.USER_ID]) {
+        history.push(MAIN_ROUTES.USER(upsertUser.id));
+      } else {
+        client.writeData({ data: { User: { ...upsertUser } } });
+        refetch();
+      }
     },
   });
 
@@ -67,7 +69,7 @@ const User = () => {
     name: '',
     email: '',
     dateOfBirth: '',
-    gender: '',
+    gender: 'MALE',
   });
 
   useEffect(() => {
