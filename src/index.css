@@ -7,7 +7,6 @@
 
 html,
 body {
-  font-smooth: always;
   font-family: var(--font-base);
   color: var(--first-dark);
   font-size: var(--size-base);

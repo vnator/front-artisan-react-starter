@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from "react-redux";
-
+import { Provider as ReduxProvider } from 'react-redux';
+import { ApolloProvider as GraphQlProvider } from '@apollo/react-hooks';
 
 import { IntlProvider } from 'react-intl';
 import '@formatjs/intl-relativetimeformat/polyfill';
@@ -14,8 +14,10 @@ import { flattenMessages } from './config/flattenMessages';
 import * as serviceWorker from './config/serviceWorker';
 import { App } from './modules/App/App.jsx';
 
-import './index.css';
 import { store } from './config/store';
+import { client } from './config/client';
+
+import './index.css';
 
 const locale =
   navigator.language ||
@@ -24,11 +26,15 @@ const locale =
   'pt-BR';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <IntlProvider locale={locale} messages={flattenMessages(messages[locale])}>
-      <App />
-    </IntlProvider>
-  </Provider>,
+  <GraphQlProvider client={client}>
+    <ReduxProvider store={store}>
+      <IntlProvider
+        locale={locale}
+        messages={flattenMessages(messages[locale])}>
+        <App />
+      </IntlProvider>
+    </ReduxProvider>
+  </GraphQlProvider>,
   document.getElementById('root'),
 );
 

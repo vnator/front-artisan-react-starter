@@ -1,0 +1,14 @@
+.User {
+  --border: 1px solid var(--white-glass);
+
+  color: var(--white-full);
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: calc(var(--space-large) * 2);
+}
+.form {
+  width: 400px;
+}

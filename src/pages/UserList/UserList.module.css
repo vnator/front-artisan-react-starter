@@ -1,0 +1,108 @@
+.UserList {
+  --border: 1px solid var(--white-glass);
+  --cell: 260px;
+  --size: calc((var(--cell) * 2) + var(--space-large));
+
+  color: var(--white-full);
+  min-height: 100vh;
+  height: auto;
+  max-width: var(--size);
+  margin: 0 auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: auto;
+  margin: 0 auto;
+  width: var(--size);
+  padding: 0;
+}
+
+.item,
+.head,
+.user {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.head {
+  padding: var(--space-base);
+}
+
+.head .iconButton {
+  min-width: var(--cell);
+}
+
+.head .icon {
+  margin: 0 var(--space-base);
+}
+
+.iconButton {
+  text-align: left;
+  border: 0;
+  background: none;
+  color: var(--white-full);
+  text-transform: uppercase;
+  padding: 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  fill: var(--first);
+  transition: var(--transition-base);
+}
+
+.iconButton:hover > .icon {
+  fill: var(--white-full);
+}
+
+.item {
+  border: var(--border);
+  border-bottom: 0;
+}
+
+.list > .item:nth-last-child(2) {
+  border-bottom: var(--border);
+}
+
+.user {
+  cursor: pointer;
+  width: 100%;
+  color: var(--white-half);
+  background: none;
+  border: 0;
+  text-align: left;
+  padding: var(--space-base);
+  transition: var(--transition-base0);
+}
+
+.user:hover {
+  background: var(--grey-dark);
+}
+
+.cell,
+.order {
+  width: var(--cell);
+}
+
+.foot {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  padding: 0;
+  height: 30px;
+}
+
+.page {
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
