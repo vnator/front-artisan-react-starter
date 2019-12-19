@@ -4,9 +4,9 @@ import Type from 'prop-types';
 import style from './Btn.module.css';
 
 const Btn = props => (
-  <div onClick={props.onClick} className={style.Btn}>
+  <button onClick={props.onClick} className={style.Btn}>
     {props.children}
-  </div>
+  </button>
 );
 
 Btn.propTypes = {

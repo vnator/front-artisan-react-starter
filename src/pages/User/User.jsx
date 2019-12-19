@@ -76,11 +76,13 @@ const User = () => {
         },
       });
     } else {
-      dispatch(triggerToast(
+      dispatch(
+        triggerToast(
           formatMessage({
             id: `app.error.${ERROR.TYPE.INPUT}.${ERROR.CODE.A01}`,
           }),
-      ));
+        ),
+      );
     }
   };
 
