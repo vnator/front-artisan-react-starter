@@ -6,16 +6,14 @@ import { spy } from 'sinon';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const FEAT = 'Btn';
-
-describe(`${FEAT}`, () => {
-  it(`${FEAT} Snapshot`, () => {
+describe('Btn', () => {
+  it('Snapshot', () => {
     const btn = mount(<Btn onClick={() => console.log('test')}>test</Btn>);
 
     expect(btn).toMatchSnapshot();
   });
 
-  it(`${FEAT} onClick`, () => {
+  it('onClick', () => {
     const btnSpy = spy();
     const btn = shallow(<Btn onClick={btnSpy}>test</Btn>);
 
