@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setStreet } from './redux/actions.js';
 import { setAddressCity } from './redux/thunks.js';
 import style from './Address.module.css';
+import { el } from './element.selectors.js';
 
 const Address = () => {
   // selector example usage
@@ -33,7 +34,7 @@ const Address = () => {
         {Object.entries(address).map(([key, val]) => (
           <div className={style.addressItem} key={key}>
             <button
-              className={style.key}
+              className={`${style.key} ${el.btnSelectRow}`}
               onClick={() => {
                 setSelected(key);
                 setNewAddress(val.street);
@@ -46,17 +47,19 @@ const Address = () => {
           </div>
         ))}
         <div className={`${style.addressItem} ${style.input}`}>
-          <span className={style.key}>
+          <span className={`${style.key} ${el.selectedRow}`}>
             {selected ? Object.keys(address).find(x => x === selected) : 'row'}
           </span>
           <input
             type="text"
-            className={style.value}
+            className={`${style.value} ${el.inputUpdateRow}`}
             value={newAddress}
             placeholder="update row street name"
             onChange={e => setNewAddress(e.target.value)}
           />
-          <button className={style.key} onClick={updateStreet}>
+          <button
+            className={`${style.key} ${el.btnUpdateRow}`}
+            onClick={updateStreet}>
             submit
           </button>
         </div>
