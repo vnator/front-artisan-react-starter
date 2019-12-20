@@ -1,11 +1,17 @@
-const FEAT = 'Toast Action';
+import { toast } from '../redux/types';
+import { setMessage, toggleActive } from '../redux/actions';
 
-describe(`${FEAT}`, () => {
-  it(`${FEAT} setMessage`, () => {
-    expect(false).toBeTruthy();
+describe('Toast Action', () => {
+  it('setMessage', () => {
+    const payload = 'any message';
+    const action = setMessage(payload);
+
+    expect(action).toEqual({ type: toast.SET_MESSAGE, payload });
   });
 
-  it(`${FEAT} toggleActive`, () => {
-    expect(false).toBeTruthy();
+  it('toggleActive', () => {
+    const action = toggleActive();
+
+    expect(action).toEqual({ type: toast.TOGGLE_ACTIVE });
   });
 });
