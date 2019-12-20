@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setCounter } from './redux/actions.js';
-import { setCounterOneByOne } from './redux/thunk.js';
+import { setCounterOneByOne } from './redux/thunks.js';
 import style from './Counter.module.css';
 import { el } from './element.selectors';
 

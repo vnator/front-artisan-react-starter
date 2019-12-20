@@ -5,13 +5,13 @@ import { counter } from './types';
 const setCounter = createAction(counter.SET_COUNTER);
 
 // DECLARE INITIAL STATE OF APP REDUCER
-const initialState = 543;
+const _initialState = 543;
 
 // DECLARE APP REDUCER
-const counterReducer = createReducer(initialState, {
+const counterReducer = createReducer(_initialState, {
   [setCounter]: (_, action) => {
     return action.payload;
   },
 });
 
-export { counterReducer };
+export { counterReducer, _initialState };
