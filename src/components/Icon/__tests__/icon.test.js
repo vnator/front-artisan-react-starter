@@ -1,31 +1,54 @@
-const FEAT = 'Icons';
+import React from 'react';
+import { IconFlatDown } from '../IconFlatDown';
+import { IconFlatLeft } from '../IconFlatLeft';
+import { IconFlatRight } from '../IconFlatRight';
+import { IconFlatUp } from '../IconFlatUp';
+import { IconReact } from '../IconReact';
+import { Svg } from '../Svg';
+import Enzyme from 'enzyme';
+import { mountWithIntl } from '../../../utils/enzymeHelper';
+import Adapter from 'enzyme-adapter-react-16';
 
-describe(`${FEAT}`, () => {
-  it(`${FEAT} Snapshot IconFlatDown`, () => {
-    expect(false).toBeTruthy();
+Enzyme.configure({ adapter: new Adapter() });
+
+describe('Icons', () => {
+  it('Snapshot IconFlatDown', () => {
+    const icon = mountWithIntl(<IconFlatDown />);
+
+    expect(icon).toMatchSnapshot();
   });
 
-  it(`${FEAT} Snapshot IconFlatLeft`, () => {
-    expect(false).toBeTruthy();
+  it('Snapshot IconFlatLeft', () => {
+    const icon = mountWithIntl(<IconFlatLeft />);
+
+    expect(icon).toMatchSnapshot();
   });
 
-  it(`${FEAT} Snapshot IconFlatRight`, () => {
-    expect(false).toBeTruthy();
+  it('Snapshot IconFlatRight', () => {
+    const icon = mountWithIntl(<IconFlatRight />);
+
+    expect(icon).toMatchSnapshot();
   });
 
-  it(`${FEAT} Snapshot IconFlatUp`, () => {
-    expect(false).toBeTruthy();
+  it('Snapshot IconFlatUp', () => {
+    const icon = mountWithIntl(<IconFlatUp />);
+
+    expect(icon).toMatchSnapshot();
   });
 
-  it(`${FEAT} Snapshot IconReact`, () => {
-    expect(false).toBeTruthy();
+  it('Snapshot IconReact', () => {
+    const icon = mountWithIntl(<IconReact />);
+
+    expect(icon).toMatchSnapshot();
   });
 
-  it(`${FEAT} Snapshot Svg`, () => {
-    expect(false).toBeTruthy();
-  });
+  it('Snapshot Svg', () => {
+    const icon = mountWithIntl(
+      <Svg>
+        <IconReact />
+      </Svg>,
+    );
 
-  it(`${FEAT} Svg Children render`, () => {
-    expect(false).toBeTruthy();
+    expect(icon).toMatchSnapshot();
   });
 });
