@@ -1,7 +1,13 @@
-const FEAT = 'Toast Thunks';
+import { spy } from 'sinon';
+import { triggerToast } from '../redux/thunks';
 
-describe(`${FEAT}`, () => {
-  it(`${FEAT} triggerToast`, () => {
-    expect(false).toBeTruthy();
+describe('Toast Thunks', () => {
+  it('triggerToast', () => {
+    const dispatch = spy();
+    const getState = () => ({ message: '', active: true });
+
+    triggerToast()(dispatch, getState);
+
+    expect(dispatch.calledTwice).toBeTruthy();
   });
 });

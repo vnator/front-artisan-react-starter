@@ -11,7 +11,7 @@ import { TextField } from '../../components/TextField/TextField';
 import style from './User.module.css';
 import { Btn } from '../../components/Btn/Btn';
 import { USER } from '../../queries/user';
-import { triggerToast } from '../../components/Toast/redux/thunk';
+import { triggerToast } from '../../components/Toast/redux/thunks';
 import { checkEmail } from '../../utils/validate';
 import { ERROR } from '../../const/errors';
 
