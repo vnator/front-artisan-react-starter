@@ -1,19 +1,27 @@
-const FEAT = 'App';
+import React from 'react';
+import { Provider } from 'react-redux';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { App } from '../App';
+import { mountWithIntl } from '../../../utils/enzymeHelper';
 
-describe(`${FEAT}`, () => {
-  it(`${FEAT} Snapshot`, () => {
-    expect(false).toBeTruthy();
-  });
+Enzyme.configure({ adapter: new Adapter() });
+const mockStore = configureMockStore([thunk]);
 
-  it(`${FEAT} menu counter`, () => {
-    expect(false).toBeTruthy();
-  });
+describe('App', () => {
+  it('Snapshot', () => {
+    const store = mockStore({
+      toast: { active: false, message: '' },
+    });
 
-  it(`${FEAT} menu address`, () => {
-    expect(false).toBeTruthy();
-  });
+    const app = mountWithIntl(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    );
 
-  it(`${FEAT} menu users`, () => {
-    expect(false).toBeTruthy();
+    expect(app).toMatchSnapshot();
   });
 });
