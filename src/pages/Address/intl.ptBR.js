@@ -1,7 +1,11 @@
-const app_ptBR = {
-  title: 'VNATOR STARTER KIT',
-  paragraph:
-    'Edite <code>src/modules/App/App.js</code> e salve para recarregar. <extern>Aprenda React</extern>',
+const address_ptBR = {
+  street: 'street',
+  city: 'city',
+  submit: 'submit',
+  placeholder: {
+    street: 'update row street name',
+    city: 'Set new city for all address',
+  },
 };
 
-export { app_ptBR };
+export { address_ptBR };

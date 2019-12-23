@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { injectIntl } from 'react-intl';
 import { Address as AddressComponet } from './Address';
 import { setStreet } from './redux/actions.js';
 import { setAddressCity } from './redux/thunks.js';
@@ -12,6 +13,9 @@ const mapDispatchToProps = dispatch => ({
   setAddressCity: city => dispatch(setAddressCity(city)),
 });
 
-const Address = connect(mapStateToProps, mapDispatchToProps)(AddressComponet);
+const Address = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(AddressComponet));
 
 export { Address };

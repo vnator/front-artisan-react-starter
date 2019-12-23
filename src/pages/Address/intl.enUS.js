@@ -1,12 +1,11 @@
-const app_enUS = {
-  title: 'VNATOR STARTER KIT',
-  paragraph:
-    'Edit <code>src/modules/App/App.js</code> and save to reload. <extern>Learn React</extern>',
-  menu: {
-    counter: 'counter',
-    address: 'address',
-    users: 'users',
+const address_enUS = {
+  street: 'street',
+  city: 'city',
+  submit: 'submit',
+  placeholder: {
+    street: 'update row street name',
+    city: 'Set new city for all address',
   },
 };
 
-export { app_enUS };
+export { address_enUS };

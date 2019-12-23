@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Type from 'prop-types';
 import style from './Address.module.css';
 import { el } from './element.selectors.js';
+import { intlShape } from '../../utils/intlShape';
 
 class Address extends Component {
   // selector example usage
@@ -18,6 +19,8 @@ class Address extends Component {
     });
 
   render() {
+    const { formatMessage } = this.props.intl;
+
     return (
       <div className={style.Address}>
         <div className={style.addressList}>
@@ -45,34 +48,36 @@ class Address extends Component {
                 ? Object.keys(this.props.address).find(
                     x => x === this.state.selected,
                   )
-                : 'row'}
+                : formatMessage({ id: 'address.street' })}
             </span>
             <input
               type="text"
               className={`${style.value} ${el.inputUpdateStreet}`}
               value={this.state.newAddress}
-              placeholder="update row street name"
+              placeholder={formatMessage({ id: 'address.placeholder.street' })}
               onChange={e => this.setState({ newAddress: e.target.value })}
             />
             <button
               className={`${style.key} ${el.btnUpdateStreet}`}
               onClick={this.updateStreet}>
-              submit
+              {formatMessage({ id: 'address.submit' })}
             </button>
           </div>
           <div className={`${style.addressItem} ${style.input}`}>
-            <span className={style.key}>city</span>
+            <span className={style.key}>
+              {formatMessage({ id: 'address.city' })}
+            </span>
             <input
               type="text"
               className={`${style.value} ${el.inputUpdateCity}`}
               value={this.state.newCity}
-              placeholder="Set new city for all address"
+              placeholder={formatMessage({ id: 'address.placeholder.city' })}
               onChange={e => this.setState({ newCity: e.target.value })}
             />
             <button
               className={`${style.key} ${el.btnUpdateCity}`}
               onClick={() => this.props.setAddressCity(this.state.newCity)}>
-              submit
+              {formatMessage({ id: 'address.submit' })}
             </button>
           </div>
         </div>
@@ -82,6 +87,7 @@ class Address extends Component {
 }
 
 Address.propTypes = {
+  intl: Type.shape(intlShape).isRequired,
   setStreet: Type.func.isRequired,
   setAddressCity: Type.func.isRequired,
   address: Type.objectOf(
