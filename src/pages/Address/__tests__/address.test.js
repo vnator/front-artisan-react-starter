@@ -6,6 +6,7 @@ import { spy } from 'sinon';
 import { Address } from '../Address';
 import { _initialState } from '../redux/reducer';
 import { el } from '../element.selectors';
+import { intl } from '../../../utils/enzymeHelper';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -14,6 +15,7 @@ describe('Address', () => {
     address: _initialState,
     setStreet: spy(),
     setAddressCity: spy(),
+    intl,
   };
 
   beforeEach(() => {

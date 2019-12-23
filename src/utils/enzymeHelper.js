@@ -1,4 +1,4 @@
-import { IntlProvider } from 'react-intl';
+import { IntlProvider, createIntl } from 'react-intl';
 import { mount, shallow } from 'enzyme';
 import { flattenMessages } from '../config/flattenMessages';
 import { messages } from '../messages';
@@ -31,4 +31,10 @@ function shallowWithIntl(node) {
   });
 }
 
-export { mountWithIntl, shallowWithIntl };
+const intl = createIntl({
+  locale: 'pt-BR',
+  defaultLocale: 'pt-BR',
+  messages: wrapMessages,
+});
+
+export { mountWithIntl, shallowWithIntl, intl };
