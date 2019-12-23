@@ -1,15 +1,37 @@
-const FEAT = 'Address Action';
+import { address } from '../redux/types';
+import { setCity, setStreet, setNumber } from '../redux/actions';
 
-describe(`${FEAT}`, () => {
-  it(`${FEAT} setStreet`, () => {
-    expect(false).toBeTruthy();
+describe('Address Action', () => {
+  it('setStreet', () => {
+    const newCity = 'Itu';
+    const index = 'first';
+
+    const result = setCity({ value: newCity, index });
+    expect(result).toEqual({
+      type: address.SET_CITY,
+      payload: { value: newCity, index: [index, 'city'] },
+    });
   });
 
-  it(`${FEAT} setNumber`, () => {
-    expect(false).toBeTruthy();
+  it('setNumber', () => {
+    const newNumber = 'Itu';
+    const index = 'first';
+
+    const result = setNumber({ value: newNumber, index });
+    expect(result).toEqual({
+      type: address.SET_NUMBER,
+      payload: { value: newNumber, index: [index, 'number'] },
+    });
   });
 
-  it(`${FEAT} setCity`, () => {
-    expect(false).toBeTruthy();
+  it('setCity', () => {
+    const newStreet = 'Itu';
+    const index = 'first';
+
+    const result = setStreet({ value: newStreet, index });
+    expect(result).toEqual({
+      type: address.SET_STREET,
+      payload: { value: newStreet, index: [index, 'street'] },
+    });
   });
 });

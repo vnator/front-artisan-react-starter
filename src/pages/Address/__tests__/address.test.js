@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { spy } from 'sinon';
 
@@ -49,21 +49,5 @@ describe('Address', () => {
 
     const result = address.find('Address').find(`.${el.selectedRow}`);
     expect(button.props().children).toBe(result.props().children);
-  });
-
-  it('onChange street', () => {
-    expect(false).toBeTruthy();
-  });
-
-  it('onClick update street', () => {
-    expect(false).toBeTruthy();
-  });
-
-  it('onChange cities', () => {
-    expect(false).toBeTruthy();
-  });
-
-  it('onClick cities', () => {
-    expect(false).toBeTruthy();
   });
 });
