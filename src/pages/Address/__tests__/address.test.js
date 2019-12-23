@@ -1,7 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { spy } from 'sinon';
@@ -12,42 +9,63 @@ import { el } from '../element.selectors';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const mockStore = configureMockStore([thunk]);
-
 describe('Address', () => {
-  it('Snapshot', () => {
-    const store = mockStore({
-      address: _initialState,
-    });
+  const mockProps = {
+    address: _initialState,
+    setStreet: spy(),
+    setAddressCity: spy(),
+  };
 
-    const address = mount(
-      <Provider store={store}>
-        <Address />
-      </Provider>,
-    );
+  beforeEach(() => {
+    mockProps.setAddressCity.resetHistory();
+    mockProps.setStreet.resetHistory();
+  });
+
+  it('Snapshot', () => {
+    const address = mount(<Address {...mockProps} />);
 
     expect(address).toMatchSnapshot();
   });
 
   it('onClick select address', () => {
-    const store = mockStore({
-      address: _initialState,
-    });
-
-    const address = mount(
-      <Provider store={store}>
-        <Address />
-      </Provider>,
-    );
-
-    const button = address
-      .find('Address')
-      .find(`.${el.btnSelectRow}`)
-      .first();
+    const address = shallow(<Address {...mockProps} />);
+    const button = address.find(`.${el.btnSelectStreet}`).first();
 
     button.simulate('click');
+    expect(address.state().selected).toBe(button.props().children);
+  });
 
-    const result = address.find('Address').find(`.${el.selectedRow}`);
-    expect(button.props().children).toBe(result.props().children);
+  it('onChange newStreet', () => {
+    const newAddress = 'carambolas';
+    const address = shallow(<Address {...mockProps} />);
+    const input = address.find(`.${el.inputUpdateStreet}`);
+
+    input.simulate('change', { target: { value: newAddress } });
+    expect(address.state().newAddress).toBe(newAddress);
+  });
+
+  it('onClick updateStreet', () => {
+    const address = shallow(<Address {...mockProps} />);
+    const button = address.find(`.${el.btnUpdateStreet}`);
+
+    button.simulate('click');
+    expect(mockProps.setStreet.calledOnce).toBeTruthy();
+  });
+
+  it('onChange newCity', () => {
+    const newCity = 'Marcelandia';
+    const address = shallow(<Address {...mockProps} />);
+    const input = address.find(`.${el.inputUpdateCity}`);
+
+    input.simulate('change', { target: { value: newCity } });
+    expect(address.state().newCity).toBe(newCity);
+  });
+
+  it('onClick setAddressCity', () => {
+    const address = shallow(<Address {...mockProps} />);
+    const button = address.find(`.${el.btnUpdateCity}`);
+
+    button.simulate('click');
+    expect(mockProps.setAddressCity.calledOnce).toBeTruthy();
   });
 });
