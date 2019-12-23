@@ -2,9 +2,6 @@ import { createAction } from '@reduxjs/toolkit';
 import { address } from './types';
 
 const _setCity = ({ value, index }) => {
-  console.log(value);
-  console.log(index);
-
   return {
     payload: {
       index: [index, 'city'],
@@ -14,9 +11,6 @@ const _setCity = ({ value, index }) => {
 };
 
 const _setStreet = ({ value, index }) => {
-  console.log(value);
-  console.log(index);
-
   return {
     payload: {
       index: [index, 'street'],
