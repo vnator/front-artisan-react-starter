@@ -3,18 +3,18 @@ import { setCity, setStreet, setNumber } from '../redux/actions';
 
 describe('Address Action', () => {
   it('setStreet', () => {
-    const newCity = 'Itu';
+    const newStreet = 'rua das carambolas';
     const index = 'first';
 
-    const result = setCity({ value: newCity, index });
+    const result = setStreet({ value: newStreet, index });
     expect(result).toEqual({
-      type: address.SET_CITY,
-      payload: { value: newCity, index: [index, 'city'] },
+      type: address.SET_STREET,
+      payload: { value: newStreet, index: [index, 'street'] },
     });
   });
 
   it('setNumber', () => {
-    const newNumber = 'Itu';
+    const newNumber = 1234;
     const index = 'first';
 
     const result = setNumber({ value: newNumber, index });
@@ -25,13 +25,13 @@ describe('Address Action', () => {
   });
 
   it('setCity', () => {
-    const newStreet = 'Itu';
+    const newCity = 'Itu';
     const index = 'first';
 
-    const result = setStreet({ value: newStreet, index });
+    const result = setCity({ value: newCity, index });
     expect(result).toEqual({
-      type: address.SET_STREET,
-      payload: { value: newStreet, index: [index, 'street'] },
+      type: address.SET_CITY,
+      payload: { value: newCity, index: [index, 'city'] },
     });
   });
 });
