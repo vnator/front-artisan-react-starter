@@ -1,8 +1,10 @@
 const el = Object.freeze({
-  btnSelectRow: 'test-address-on_click_select_row',
-  selectedRow: 'test-address-selected_row',
-  inputUpdateRow: 'test-address-input_update_row',
-  btnUpdateRow: 'test-address-btn_update_row',
+  btnSelectStreet: 'test-address-on_click_select_street',
+  selectedStreet: 'test-address-selected_street',
+  inputUpdateStreet: 'test-address-input_update_street',
+  btnUpdateStreet: 'test-address-btn_update_street',
+  inputUpdateCity: 'test-address-input_update_city',
+  btnUpdateCity: 'test-address-btn_update_city',
 });
 
 export { el };
