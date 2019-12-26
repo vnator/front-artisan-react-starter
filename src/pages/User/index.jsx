@@ -29,6 +29,7 @@ User = compose(
     options: props => ({
       variables: { id: props.match.params[ROUTER_PARAMS.USER_ID] },
     }),
+    skip: props => !props.match.params[ROUTER_PARAMS.USER_ID],
   }),
   graphql(USER.UPSERT_USER),
 )(UserComponent);

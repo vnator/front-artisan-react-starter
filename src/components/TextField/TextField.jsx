@@ -11,6 +11,7 @@ const TextField = props => (
 );
 
 TextField.defaultProps = {
+  value: '',
   placeholder: '',
   onBlur: undefined,
   onFocus: undefined,
@@ -22,7 +23,7 @@ TextField.propTypes = {
   name: Type.string.isRequired,
   label: Type.string.isRequired,
   placeholder: Type.string,
-  value: Type.string.isRequired,
+  value: Type.string,
   onChange: Type.func.isRequired,
   onBlur: Type.func,
   onFocus: Type.func,

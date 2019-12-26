@@ -8,6 +8,7 @@ import { Btn } from '../../components/Btn/Btn';
 import { checkEmail } from '../../utils/validate';
 import { ERROR } from '../../const/errors';
 import { intlShape } from '../../utils/intlShape';
+import { USER } from '../../queries/user';
 
 class User extends Component {
   constructor(props) {
@@ -53,19 +54,15 @@ class User extends Component {
     }
   };
 
-  submit = e => {
+  submit = (e, form) => {
     e.preventDefault();
 
-    if (checkEmail(this.state.email)) {
-      this.props
-        .mutate({
-          variables: {
-            ...this.state,
-          },
-        })
-        .then(() => {
-          this.props.data.refetch();
-        });
+    if (checkEmail(form.email)) {
+      this.props.mutate({
+        variables: {
+          ...form,
+        },
+      });
     } else {
       this.props.triggerToast(
         this.props.intl.formatMessage({
@@ -103,7 +100,7 @@ class User extends Component {
             />
           ))}
 
-          <Btn onClick={this.submit}>
+          <Btn onClick={e => this.submit(e, this.state)}>
             {formatMessage({
               id: 'user.submit',
             })}
@@ -121,6 +118,7 @@ User.propTypes = {
   data: Type.shape({
     loading: Type.bool,
     user: Type.objectOf(Type.string),
+    refetch: Type.func,
     error: Type.string,
   }).isRequired,
 };

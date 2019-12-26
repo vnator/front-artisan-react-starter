@@ -44,9 +44,11 @@ const USER = {
         dateOfBirth: $dateOfBirth
         gender: $gender
       ) {
-        id
+        ...userFields
       }
     }
+
+    ${USER_FRAGMENTS.USER_FIELDS}
   `,
 };
 
