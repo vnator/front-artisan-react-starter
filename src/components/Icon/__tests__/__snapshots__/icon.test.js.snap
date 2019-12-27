@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icons Snapshot IconFlatDown 1`] = `ReactWrapper {}`;
+
+exports[`Icons Snapshot IconFlatLeft 1`] = `ReactWrapper {}`;
+
+exports[`Icons Snapshot IconFlatRight 1`] = `ReactWrapper {}`;
+
+exports[`Icons Snapshot IconFlatUp 1`] = `ReactWrapper {}`;
+
+exports[`Icons Snapshot IconReact 1`] = `ReactWrapper {}`;
+
+exports[`Icons Snapshot Svg 1`] = `ReactWrapper {}`;

@@ -1,66 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
-import { useDispatch } from 'react-redux';
-import { useIntl } from 'react-intl';
-import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import React, { Component } from 'react';
+import Type from 'prop-types';
 
-import { ROUTER_PARAMS, MAIN_ROUTES } from '../../const/routes';
 import { TextField } from '../../components/TextField/TextField';
 
 import style from './User.module.css';
 import { Btn } from '../../components/Btn/Btn';
-import { USER } from '../../queries/user';
-import { triggerToast } from '../../components/Toast/redux/thunk';
 import { checkEmail } from '../../utils/validate';
 import { ERROR } from '../../const/errors';
+import { intlShape } from '../../utils/intlShape';
+import { USER } from '../../queries/user';
 
-const User = () => {
-  const dispatch = useDispatch();
-  const params = useParams();
-  const history = useHistory();
-  const { formatMessage } = useIntl();
+class User extends Component {
+  constructor(props) {
+    super(props);
 
-  const client = useApolloClient();
+    this.state = {
+      ...this._updateUser(props.data.user),
+    };
+  }
 
-  const { data, loading, error, refetch } = useQuery(USER.GET_USER, {
-    variables: {
-      id: params[ROUTER_PARAMS.USER_ID],
-    },
-  });
+  _updateUser = user =>
+    user
+      ? {
+          name: user.name,
+          email: user.email,
+          dateOfBirth: user.dateOfBirth,
+          gender: user.gender,
+        }
+      : {
+          name: '',
+          email: '',
+          dateOfBirth: '',
+          gender: 'MALE',
+        };
 
-  const [upsertUser] = useMutation(USER.UPSERT_USER, {
-    onCompleted({ upsertUser }) {
-      if (upsertUser.id !== params[ROUTER_PARAMS.USER_ID]) {
-        history.push(MAIN_ROUTES.USER(upsertUser.id));
-      } else {
-        client.writeData({ data: { User: { ...upsertUser } } });
-        refetch();
-      }
-    },
-  });
-
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    dateOfBirth: '',
-    gender: 'MALE',
-  });
-
-  useEffect(() => {
-    if (data && data.user) {
-      const { name, email, dateOfBirth, gender } = data.user;
-
-      setForm({
-        name,
-        email,
-        dateOfBirth,
-        gender,
-      });
+  componentDidUpdate(prevProps) {
+    if (!prevProps.data.user && this.props.data.user) {
+      this.setState(this._updateUser(this.props.data.user));
     }
-  }, [data, loading, error]);
+  }
 
-  const defineType = name => {
+  onChange = e => {
+    const { name, value } = e.target;
+
+    this.setState({ [name]: value });
+  };
+
+  defineType = name => {
     if (name === 'dateOfBirth') {
       return 'date';
     } else if (name === 'email') {
@@ -68,54 +54,73 @@ const User = () => {
     }
   };
 
-  const submit = () => {
+  submit = (e, form) => {
+    e.preventDefault();
+
     if (checkEmail(form.email)) {
-      upsertUser({
+      this.props.mutate({
         variables: {
           ...form,
         },
       });
     } else {
-      dispatch(triggerToast(
-          formatMessage({
-            id: `app.error.${ERROR.TYPE.INPUT}.${ERROR.CODE.A01}`,
-          }),
-      ));
+      this.props.triggerToast(
+        this.props.intl.formatMessage({
+          id: `app.error.${ERROR.TYPE.INPUT}.${ERROR.CODE.A01}`,
+        }),
+      );
     }
   };
 
-  return (
-    <div className={style.User}>
-      <h2 className={style.title}>
-        {formatMessage({
-          id: 'user.title',
-        })}
-      </h2>
+  render() {
+    const { formatMessage } = this.props.intl;
 
-      <form className={style.form}>
-        {Object.entries(form).map(([key, val]) => (
-          <TextField
-            key={key}
-            name={key}
-            value={val}
-            label={formatMessage({ id: `user.form.${key}.label` })}
-            onChange={e => setForm({ ...form, [key]: e.target.value })}
-            placeholder={formatMessage({
-              id: `user.form.${key}.placeholder`,
-            })}
-            type={defineType(key)}
-            disabled={key === 'gender'}
-          />
-        ))}
-
-        <Btn onClick={submit}>
+    return this.props.data.loading ? (
+      'carregando'
+    ) : (
+      <div className={style.User}>
+        <h2 className={style.title}>
           {formatMessage({
-            id: 'user.submit',
+            id: 'user.title',
           })}
-        </Btn>
-      </form>
-    </div>
-  );
+        </h2>
+        <form className={style.form}>
+          {Object.entries(this.state).map(([key, val]) => (
+            <TextField
+              key={key}
+              name={key}
+              value={val}
+              label={formatMessage({ id: `user.form.${key}.label` })}
+              onChange={this.onChange}
+              placeholder={formatMessage({
+                id: `user.form.${key}.placeholder`,
+              })}
+              type={this.defineType(key)}
+              disabled={key === 'gender'}
+            />
+          ))}
+
+          <Btn onClick={e => this.submit(e, this.state)}>
+            {formatMessage({
+              id: 'user.submit',
+            })}
+          </Btn>
+        </form>
+      </div>
+    );
+  }
+}
+
+User.propTypes = {
+  mutate: Type.func.isRequired,
+  triggerToast: Type.func.isRequired,
+  intl: Type.shape(intlShape).isRequired,
+  data: Type.shape({
+    loading: Type.bool,
+    user: Type.objectOf(Type.string),
+    refetch: Type.func,
+    error: Type.string,
+  }).isRequired,
 };
 
 export { User };

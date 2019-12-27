@@ -16,42 +16,17 @@ import { MAIN_ROUTES } from '../../const/routes';
 import { Btn } from '../../components/Btn/Btn';
 import { SORT_FIELD } from '../../const/userListParams';
 import { USER } from '../../queries/user';
+import { usePagination } from './usePagination';
 
 const UserList = () => {
   const history = useHistory();
-  const [page, setPage] = useState(0);
-  const [params, setParams] = useState({
-    skip: 0,
-    sortField: SORT_FIELD.NAME,
-    limit: 4,
-  });
+  const [pag, { nextPage, prevPage, orderBy }] = usePagination(SORT_FIELD.NAME);
 
   const { formatMessage } = useIntl();
 
   const { data } = useQuery(USER.GET_USER_LIST, {
-    variables: params,
+    variables: pag.params,
   });
-
-  function onClickUser(id = 0) {
-    history.push(MAIN_ROUTES.USER(id));
-  }
-
-  function setNewPage(value) {
-    if (value >= 0) {
-      setPage(value);
-      setParams({
-        ...params,
-        skip: value * params.limit,
-      });
-    }
-  }
-
-  function orderBy(value) {
-    setParams({
-      ...params,
-      sortField: value,
-    });
-  }
 
   return (
     <div className={style.UserList}>
@@ -69,7 +44,7 @@ const UserList = () => {
             {formatMessage({
               id: 'users.list.name',
             })}
-            {params.sortField === SORT_FIELD.NAME ? (
+            {pag.params.sortField === SORT_FIELD.NAME ? (
               <IconFlatDown className={style.icon} />
             ) : (
               <IconFlatUp className={style.icon} />
@@ -81,7 +56,7 @@ const UserList = () => {
             {formatMessage({
               id: 'users.list.email',
             })}
-            {params.sortField === SORT_FIELD.EMAIL ? (
+            {pag.params.sortField === SORT_FIELD.EMAIL ? (
               <IconFlatDown className={style.icon} />
             ) : (
               <IconFlatUp className={style.icon} />
@@ -94,7 +69,7 @@ const UserList = () => {
             <li key={user.id} className={style.item}>
               <button
                 className={style.user}
-                onClick={() => onClickUser(user.id)}>
+                onClick={() => history.push(MAIN_ROUTES.USER(user.id))}>
                 <strong className={style.cell}>{user.name}</strong>
                 <span className={style.cell}>{user.email}</span>
               </button>
@@ -102,21 +77,19 @@ const UserList = () => {
           ))}
 
         <li className={style.foot}>
-          <button
-            onClick={() => setNewPage(page - 1)}
-            className={style.iconButton}>
+          <button onClick={prevPage} className={style.iconButton}>
             <IconFlatLeft className={style.icon} />
           </button>
-          <strong className={style.page}>{page + 1}</strong>
-          <button
-            onClick={() => setNewPage(page + 1)}
-            className={style.iconButton}>
+          <strong className={style.page}>{pag.page}</strong>
+          <button onClick={nextPage} className={style.iconButton}>
             <IconFlatRight className={style.icon} />
           </button>
         </li>
       </ul>
 
-      <Btn onClick={() => onClickUser()}>
+      <Btn
+        class="carambolas-quadradas"
+        onClick={() => history.push(MAIN_ROUTES.USER(0))}>
         {formatMessage({
           id: 'users.newUser',
         })}

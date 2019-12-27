@@ -5,11 +5,11 @@ import { useIntl } from 'react-intl';
 import style from './App.module.css';
 
 import { Counter } from '../../components/Counter/Counter';
-import { Address } from '../../pages/Address/Address';
+import { Address } from '../../pages/Address';
 import { Header } from '../Header/Header';
 import { MAIN_ROUTES } from '../../const/routes';
 import { UserList } from '../../pages/UserList/UserList';
-import { User } from '../../pages/User/User';
+import { User } from '../../pages/User';
 import { Toast } from '../../components/Toast/Toast';
 
 const App = () => {

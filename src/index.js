@@ -4,10 +4,6 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { ApolloProvider as GraphQlProvider } from '@apollo/react-hooks';
 
 import { IntlProvider } from 'react-intl';
-import '@formatjs/intl-relativetimeformat/polyfill';
-import '@formatjs/intl-relativetimeformat/dist/locale-data/pt';
-import '@formatjs/intl-relativetimeformat/dist/locale-data/en';
-
 import { messages } from './messages';
 
 import { flattenMessages } from './config/flattenMessages';
@@ -18,6 +14,18 @@ import { store } from './config/store';
 import { client } from './config/client';
 
 import './index.css';
+
+if (!Intl.RelativeTimeFormat) {
+  require('@formatjs/intl-relativetimeformat/polyfill');
+  require('@formatjs/intl-relativetimeformat/dist/locale-data/pt');
+  require('@formatjs/intl-relativetimeformat/dist/locale-data/en');
+}
+
+if (!Intl.PluralRules) {
+  require('@formatjs/intl-pluralrules/polyfill');
+  require('@formatjs/intl-pluralrules/dist/locale-data/pt');
+  require('@formatjs/intl-pluralrules/dist/locale-data/en');
+}
 
 const locale =
   navigator.language ||

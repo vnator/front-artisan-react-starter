@@ -14,7 +14,7 @@ const Toast = () => {
         dispatch(toggleActive());
       }, 3000);
     }
-  }, [active]);
+  }, [active, dispatch]);
 
   return (
     <div className={`${style.Toast} ${active && style._active}`}>{message}</div>

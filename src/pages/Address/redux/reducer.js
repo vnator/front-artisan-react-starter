@@ -6,7 +6,7 @@ const setStreet = createAction(address.SET_STREET);
 const setCity = createAction(address.SET_CITY);
 const setNumber = createAction(address.SET_NUMBER);
 
-const initialState = Object.freeze({
+const _initialState = Object.freeze({
   first: {
     city: 'Curitiba',
     street: 'Rua dos Boticarios',
@@ -29,7 +29,7 @@ const initialState = Object.freeze({
   },
 });
 
-const addressReducer = createReducer(initialState, {
+const addressReducer = createReducer(_initialState, {
   [setCity]: (state, action) => {
     const { index, value } = action.payload;
     return assocPath(index, value, state);
@@ -46,4 +46,4 @@ const addressReducer = createReducer(initialState, {
   },
 });
 
-export { addressReducer };
+export { addressReducer, _initialState };

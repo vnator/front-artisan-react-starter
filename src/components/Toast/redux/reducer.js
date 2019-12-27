@@ -7,17 +7,17 @@ const setMessage = createAction(toast.SET_MESSAGE);
 const toggleActive = createAction(toast.TOGGLE_ACTIVE);
 
 // DECLARE INITIAL STATE OF APP REDUCER
-const initialState = Object.freeze({
+const _initialState = Object.freeze({
   active: false,
   message: '',
 });
 
 // DECLARE APP REDUCER
-const toastReducer = createReducer(initialState, {
+const toastReducer = createReducer(_initialState, {
   [toggleActive]: (state, _) => assocPath(['active'], !state.active, state),
 
   [setMessage]: (state, action) =>
     assocPath(['message'], action.payload, state),
 });
 
-export { toastReducer };
+export { toastReducer, _initialState };
