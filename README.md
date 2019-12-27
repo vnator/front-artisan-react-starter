@@ -13,6 +13,7 @@ Dependencies of project.
 - [React Intl](https://github.com/formatjs/react-intl): Lib form internacionalization and static textual content.
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start): create and management routes.
 - [Ramda](https://ramdajs.com/): lib with set of functions for Functional Programing.
+- [CSS Modules](https://github.com/css-modules/css-modules): lib for removing the cascade of stylesheets.
 
 ### QA and Tests
 Dev Dependencies to write tests or mainteining the code quality.
