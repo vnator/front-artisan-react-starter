@@ -31,6 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:ci": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "lint:js": "npx eslint -c .eslintrc --ignore-path .eslintignore '**/*.{js,jsx}' --quiet",
     "lint:css": "npx stylelint src/**/*.css",
@@ -59,7 +60,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn run lint:js && yarn run lint:css",
-      "pre-push": "yarn run lint:js && yarn run lint:css && yarn test"
+      "pre-push": "yarn run lint:js && yarn run lint:css && yarn test:ci"
     }
   },
   "devDependencies": {
