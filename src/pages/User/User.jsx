@@ -8,7 +8,6 @@ import { Btn } from '../../components/Btn/Btn';
 import { checkEmail } from '../../utils/validate';
 import { ERROR } from '../../const/errors';
 import { intlShape } from '../../utils/intlShape';
-import { USER } from '../../queries/user';
 
 class User extends Component {
   constructor(props) {

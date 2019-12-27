@@ -22,8 +22,6 @@ function usePagination(sortField, limit = 4) {
             skip: prev.params.limit * (newPage - 1),
           },
         };
-
-        console.log(pag);
       }
 
       return pag;
