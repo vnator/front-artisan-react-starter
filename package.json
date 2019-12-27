@@ -41,9 +41,6 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "hooks": {
-    "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
