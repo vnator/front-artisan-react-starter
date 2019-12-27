@@ -31,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:js": "npx eslint -c .eslintrc --ignore-path .eslintignore '**/*.{js,jsx}' --quiet",
+    "lint:css": "npx stylelint src/**/*.css"
   },
   "eslintConfig": {
     "extends": "react-app"
