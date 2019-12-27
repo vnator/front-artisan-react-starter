@@ -1,5 +1,5 @@
 const el = Object.freeze({
-  btnSelectStreet: 'test-address-on_click_select_street',
+  btnSelectStreet: 'test-address-select_street',
   selectedStreet: 'test-address-selected_street',
   inputUpdateStreet: 'test-address-input_update_street',
   btnUpdateStreet: 'test-address-btn_update_street',
