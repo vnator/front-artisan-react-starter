@@ -74,7 +74,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslit": "^6.0.0",
     "git-cz": "^3.3.0",
-    "husky": "^3.1.0",
+    "husky": "^4.0.3",
     "prettier": "^1.19.1",
     "redux-mock-store": "^1.5.4",
     "stylelint": "^12.0.0",
