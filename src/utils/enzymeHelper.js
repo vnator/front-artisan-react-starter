@@ -1,13 +1,13 @@
 import { IntlProvider, createIntl } from 'react-intl';
 import { mount, shallow } from 'enzyme';
-import { flattenMessages } from '../config/flattenMessages';
+import { parseMessages } from '../config/parseMessages';
 import { messages } from '../messages';
 
 // You can pass your messages to the IntlProvider. Optional: remove if unneeded.
 
 const defaultLocale = 'pt-BR';
 const locale = defaultLocale;
-const wrapMessages = flattenMessages(messages[locale]);
+const wrapMessages = parseMessages(messages[locale]);
 
 function mountWithIntl(node) {
   return mount(node, {
