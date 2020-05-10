@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { toast } from './types';
 
-const _setMessage = value => ({ payload: value });
+const _setMessage = (value) => ({ payload: value });
 
 const setMessage = createAction(toast.SET_MESSAGE, _setMessage);
 

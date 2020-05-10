@@ -6,7 +6,7 @@ import { toggleActive } from './redux/actions';
 
 const Toast = () => {
   const dispatch = useDispatch();
-  const { active, message } = useSelector(state => state.toast);
+  const { active, message } = useSelector((state) => state.toast);
 
   useEffect(() => {
     if (active) {

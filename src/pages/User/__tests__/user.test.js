@@ -40,7 +40,7 @@ describe('User', () => {
 
     const instance = user.instance();
 
-    states.forEach(name => {
+    states.forEach((name) => {
       instance.onChange({ target: { value, name } });
       expect(user.state()[name]).toBe(value);
     });

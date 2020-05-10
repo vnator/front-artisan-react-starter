@@ -24,7 +24,7 @@ const App = () => {
             id: 'app.paragraph',
           },
           {
-            extern: str => (
+            extern: (str) => (
               <a
                 key={str}
                 className={style.link}
@@ -34,7 +34,7 @@ const App = () => {
                 {str}
               </a>
             ),
-            code: str => (
+            code: (str) => (
               <code key={str} className={style.code}>
                 {str}
               </code>

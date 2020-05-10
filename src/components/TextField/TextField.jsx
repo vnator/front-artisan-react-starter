@@ -3,7 +3,7 @@ import Type from 'prop-types';
 
 import style from './TextField.module.css';
 
-const TextField = props => (
+const TextField = (props) => (
   <div className={style.TextField}>
     <label className={style.label}>{props.label}</label>
     <input className={style.input} {...props} />

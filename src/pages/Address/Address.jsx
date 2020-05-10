@@ -29,7 +29,7 @@ class Address extends Component {
               <button
                 className={`${style.key} ${el.btnSelectStreet}`}
                 onClick={() => {
-                  this.setState(prev => ({
+                  this.setState((prev) => ({
                     ...prev,
                     selected: key,
                     newAddress: val.street,
@@ -46,7 +46,7 @@ class Address extends Component {
             <span className={`${style.key} ${el.selectedStreet}`}>
               {this.state.selected
                 ? Object.keys(this.props.address).find(
-                    x => x === this.state.selected,
+                    (x) => x === this.state.selected,
                   )
                 : formatMessage({ id: 'address.street' })}
             </span>
@@ -55,7 +55,7 @@ class Address extends Component {
               className={`${style.value} ${el.inputUpdateStreet}`}
               value={this.state.newAddress}
               placeholder={formatMessage({ id: 'address.placeholder.street' })}
-              onChange={e => this.setState({ newAddress: e.target.value })}
+              onChange={(e) => this.setState({ newAddress: e.target.value })}
             />
             <button
               className={`${style.key} ${el.btnUpdateStreet}`}
@@ -72,7 +72,7 @@ class Address extends Component {
               className={`${style.value} ${el.inputUpdateCity}`}
               value={this.state.newCity}
               placeholder={formatMessage({ id: 'address.placeholder.city' })}
-              onChange={e => this.setState({ newCity: e.target.value })}
+              onChange={(e) => this.setState({ newCity: e.target.value })}
             />
             <button
               className={`${style.key} ${el.btnUpdateCity}`}

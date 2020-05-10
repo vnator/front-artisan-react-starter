@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { counter } from './types';
 
-const _setCounter = value => {
+const _setCounter = (value) => {
   return { payload: value };
 };
 

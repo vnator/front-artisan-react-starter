@@ -72,7 +72,7 @@ describe('Toast', () => {
     expect(dom).toBeTruthy();
   });
 
-  it('auto hide', done => {
+  it('auto hide', (done) => {
     const toast = {
       message: 'any message',
       active: true,

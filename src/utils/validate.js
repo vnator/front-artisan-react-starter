@@ -1,5 +1,5 @@
 import { PATTERN } from '../const/patterns';
 
-const checkEmail = value => PATTERN.EMAIL.test(value);
+const checkEmail = (value) => PATTERN.EMAIL.test(value);
 
 export { checkEmail };

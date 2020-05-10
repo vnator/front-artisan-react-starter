@@ -1,7 +1,7 @@
 import { setCounter } from './actions';
 
 const _REPET = 10;
-const _TIMER = n => `${n}000`;
+const _TIMER = (n) => `${n}000`;
 
 const setCounterOneByOne = () => (dispatch, getState) => {
   let { counter } = getState();

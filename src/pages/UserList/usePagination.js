@@ -11,7 +11,7 @@ function usePagination(sortField, limit = 4) {
   });
 
   const prevPage = () =>
-    setPag(prev => {
+    setPag((prev) => {
       if (prev.page > 1) {
         const newPage = prev.page - 1;
 
@@ -28,7 +28,7 @@ function usePagination(sortField, limit = 4) {
     });
 
   const nextPage = () => {
-    setPag(prev => {
+    setPag((prev) => {
       const newPage = prev.page + 1;
       const skip = prev.params.limit * (newPage - 1);
 
@@ -42,8 +42,8 @@ function usePagination(sortField, limit = 4) {
     });
   };
 
-  const orderBy = sortField =>
-    setPag(prev => ({
+  const orderBy = (sortField) =>
+    setPag((prev) => ({
       ...prev,
       params: {
         ...prev.params,

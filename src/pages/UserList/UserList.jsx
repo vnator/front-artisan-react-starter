@@ -65,7 +65,7 @@ const UserList = () => {
         </li>
 
         {data &&
-          data.users.map(user => (
+          data.users.map((user) => (
             <li key={user.id} className={style.item}>
               <button
                 className={style.user}

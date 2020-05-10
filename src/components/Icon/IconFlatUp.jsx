@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { Svg, viewBoxType } from './Svg';
 
-const IconFlatUp = props => {
+const IconFlatUp = (props) => {
   const { formatMessage } = useIntl();
 
   return (

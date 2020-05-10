@@ -17,8 +17,8 @@ let User = {};
 const mapStateToProps = () => ({});
 
 // funcoes para actions e thunks para props
-const mapDispatchToProps = dispatch => ({
-  triggerToast: message => dispatch(triggerToast(message)),
+const mapDispatchToProps = (dispatch) => ({
+  triggerToast: (message) => dispatch(triggerToast(message)),
 });
 
 /**
@@ -26,10 +26,10 @@ const mapDispatchToProps = dispatch => ({
  */
 User = compose(
   graphql(USER.GET_USER, {
-    options: props => ({
+    options: (props) => ({
       variables: { id: props.match.params[ROUTER_PARAMS.USER_ID] },
     }),
-    skip: props => !props.match.params[ROUTER_PARAMS.USER_ID],
+    skip: (props) => !props.match.params[ROUTER_PARAMS.USER_ID],
   }),
   graphql(USER.UPSERT_USER),
 )(UserComponent);
